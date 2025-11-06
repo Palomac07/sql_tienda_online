@@ -84,3 +84,15 @@ CREATE TABLE DescuentosPersonalizados (
     FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID),
     FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
 );
+
+-- Crear tabla para registrar intentos de productos duplicados
+CREATE TABLE ProductosDuplicados (
+    DuplicadoID INT PRIMARY KEY AUTO_INCREMENT,
+    PedidoID INT,
+    ProductoID INT,
+    CantidadIntentada INT NOT NULL,
+    PrecioUnitario DECIMAL(10, 2) NOT NULL,
+    FechaIntento DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (PedidoID) REFERENCES Pedidos(PedidoID),
+    FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
+);
